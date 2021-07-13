@@ -1,0 +1,22 @@
+//argumentos de entrada: -d deviceid -e email -p password -r region
+const ewelink = require('ewelink-api');
+const minimist = require("minimist");
+
+const args = minimist(process.argv.slice(2));
+
+
+var wrdeviceid = args.d;
+var wremail = args.e;
+var wrpassword = args.p;
+var wrregion = args.r;
+
+(async () => {
+    const connection = new ewelink({
+        email: wremail,
+        password: wrpassword,
+        region: wrregion
+        });
+      
+        const device = await connection.getDevice(wrdeviceid);
+        console.log('fichero creado:', device);
+})();
